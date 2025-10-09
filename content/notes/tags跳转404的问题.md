@@ -7,7 +7,7 @@ tags: ["hugo"]
 
 Diary主题默认所有项目都是主github page，但我的是项目级别的github page，页面的tags标签自动跳转时不带项目名称，导致跳转url为404页面。
 
-只需要在 theme/hugo-theme-diary/layouts/_default/single.html里，把如下这一行：
+只需要在 theme/hugo-theme-diary/layouts/_default/single.html里，复制到项目的 layouts/_default/single.html，把如下这一行：
 
 ` <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>`
 
