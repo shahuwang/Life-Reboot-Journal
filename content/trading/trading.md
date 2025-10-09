@@ -5,4 +5,4 @@ draft: false
 tags: ["life", "hugo"]
 ---
 
-Trading info 校验内容的阿斯顿法师打发是的法师打发
+自动化交易相关的内容会放在这里

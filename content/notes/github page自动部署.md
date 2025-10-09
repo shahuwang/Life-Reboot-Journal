@@ -12,3 +12,5 @@ tags: ["hugo"]
 1、HUGO_VERSION 改成与自己的版本一致
 
 2、baseUL改成：`--baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"`，原来的方式是主page级别，我要的是项目级的page.
+
+后续只要git push就会自动创建部署了

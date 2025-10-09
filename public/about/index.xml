@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abouts on Life Reboot Journal</title>
+    <link>http://localhost:1313/Life-Reboot-Journal/about/</link>
+    <description>Recent content in Abouts on Life Reboot Journal</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/Life-Reboot-Journal/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Me</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/about/about/</link>
+      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/about/about/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m a Software Developer with Tencent Music Entertainment in Guangzhou, China.&lt;/p&gt;&#xA;&lt;p&gt;Now in my middle years, I&amp;rsquo;m proactively building a foundation for the future.&lt;/p&gt;&#xA;&lt;p&gt;This space is dedicated to my efforts in acquiring the essential skills needed to ensure a stable and secure life for my family and myself.&lt;/p&gt;&#xA;&lt;p&gt;To connect or discuss, please email me at &lt;a href=&#34;mailto:shahuwang@qq.com&#34;&gt;shahuwang@qq.com&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
