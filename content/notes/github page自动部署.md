@@ -13,4 +13,6 @@ tags: ["hugo"]
 
 2、baseUL改成：`--baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"`，原来的方式是主page级别，我要的是项目级的page.
 
-后续只要git push就会自动创建部署了
+后续只要git push就会自动创建部署了。在这个页面可以看到部署进度 https://github.com/shahuwang/Life-Reboot-Journal/deployments/github-pages。
+
+这样子后续在没有hugo的电脑上，只要编辑文件的markdown就可以了，github Action会自动生成html。
