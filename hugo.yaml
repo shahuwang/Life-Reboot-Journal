@@ -1,0 +1,43 @@
+theme: hugo-theme-diary
+baseURL: https://shahuwang.github.io/Life-Reboot-Journal/
+languageCode: en-us
+title: Life Reboot Journal
+
+# 启用目录（可选）
+markup:
+  tableOfContents:
+    endLevel: 3
+    ordered: false
+    startLevel: 2
+
+# 启用分页
+pagination:
+  pagerSize: 10
+  path: "page"
+
+params:
+  showCategories: true   # 如果主题支持这个参数
+  showTags: true
+
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 1
+    - identifier: trading
+      name: Trading
+      url: /trading/
+      weight: 2
+    - identifier: about
+      name: About
+      url: /about
+      weight: 3
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 4
+
+taxonomies:
+  tag: "tags"
+  category: "categories"

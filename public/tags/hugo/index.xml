@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on Life Reboot Journal</title>
+    <link>http://localhost:1313/Life-Reboot-Journal/tags/hugo/</link>
+    <description>Recent content in Hugo on Life Reboot Journal</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/Life-Reboot-Journal/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Trading</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/trading/trading/</link>
+      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/trading/trading/</guid>
+      <description>&lt;p&gt;Trading info 校验内容的阿斯顿法师打发是的法师打发&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Trading2</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/trading/trading2/</link>
+      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/trading/trading2/</guid>
+      <description>&lt;p&gt;trading 2&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用Diary主题解决tag页面跳转404的问题</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/notes/tags%E8%B7%B3%E8%BD%AC404%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/notes/tags%E8%B7%B3%E8%BD%AC404%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;Diary主题默认所有项目都是主github page，但我的是项目级别的github page，页面的tags标签自动跳转时不带项目名称，导致跳转url为404页面。&lt;/p&gt;&#xA;&lt;p&gt;只需要在 theme/hugo-theme-diary/layouts/_default/single.html里，把如下这一行：&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt; &amp;lt;a href=&amp;quot;{{ &amp;quot;/tags/&amp;quot; | relLangURL }}{{ . | urlize }}&amp;quot;&amp;gt;{{ . }}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;替换成：&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt; &amp;lt;a href=&amp;quot;{{ &amp;quot;/Life-Reboot-Journal/tags/&amp;quot; | relURL }}{{ . | urlize }}&amp;quot;&amp;gt;{{ . }}&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;即可解决tags跳转失败的问题。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
