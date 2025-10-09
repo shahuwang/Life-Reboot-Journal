@@ -18,6 +18,7 @@ pagination:
 params:
   showCategories: true   # 如果主题支持这个参数
   showTags: true
+  favicon: "images/favicon.ico"
 
 menu:
   main:

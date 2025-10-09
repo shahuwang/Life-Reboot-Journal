@@ -2,12 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/Life-Reboot-Journal/about/about/</loc>
-    <lastmod>2025-10-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/Life-Reboot-Journal/about/</loc>
-    <lastmod>2025-10-09T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2025-10-09T00:00:00+00:00</lastmod>
   </url><url>
@@ -34,6 +28,15 @@
   </url><url>
     <loc>http://localhost:1313/Life-Reboot-Journal/notes/tags%E8%B7%B3%E8%BD%AC404%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2025-10-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Life-Reboot-Journal/notes/%E8%A7%A3%E5%86%B3github%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2025-10-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Life-Reboot-Journal/about/about/</loc>
+    <lastmod>2025-10-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Life-Reboot-Journal/about/</loc>
+    <lastmod>2025-10-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/Life-Reboot-Journal/categories/</loc>
   </url>
