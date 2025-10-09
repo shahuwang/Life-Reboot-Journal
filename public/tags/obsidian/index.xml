@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Obsidian on Life Reboot Journal</title>
+    <link>http://localhost:1313/Life-Reboot-Journal/tags/obsidian/</link>
+    <description>Recent content in Obsidian on Life Reboot Journal</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/Life-Reboot-Journal/tags/obsidian/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>obsidian与hugo结合的方法.md</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/notes/obsidian%E4%B8%8Ehugo-%E7%BB%93%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/notes/obsidian%E4%B8%8Ehugo-%E7%BB%93%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

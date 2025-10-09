@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/Life-Reboot-Journal/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Life-Reboot-Journal/livereload" data-no-instant defer></script>
+<title>相似图片的判定及海量图片快速查找相似图片的实现方案</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=5" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+<link rel="icon" href="http://localhost:1313/Life-Reboot-Journal/images/favicon.ico">
+
+
+
+      <script src="/Life-Reboot-Journal/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/Life-Reboot-Journal/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/Life-Reboot-Journal/scss/dark-mode.min.cb53f1bee2b8900cb4f082afbf00175d6618f281cf9a2fe8619e3b52d20b5721.css" integrity="sha256-y1PxvuK4kAy08IKvvwAXXWYY8oHPmi/oYZ47UtILVyE=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/Life-Reboot-Journal/">
+                    Home
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/Life-Reboot-Journal/trading/">
+                    Trading
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/Life-Reboot-Journal/about/about/">
+                    About
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/Life-Reboot-Journal/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="http://localhost:1313/Life-Reboot-Journal/">
+            Life Reboot Journal
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://localhost:1313/Life-Reboot-Journal/">
+        <div class="single-column-header-title">Life Reboot Journal</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    相似图片的判定及海量图片快速查找相似图片的实现方案
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2025-10-09 00:00
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/Life-Reboot-Journal/tags/programming">Programming</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h5 id="前言">前言</h5>
+<p>本文所述相似图片，即为在视觉上一致的图片，因图片格式、形状变化、图片亮度等等变化，无法使用图片md5的方法来判断图片是否相似。在当前业务场景中，判断两张图片是否视觉一致，以及快速在海量图片中找到视觉相似的图片，有着迫切的需求，如下2个场景急需图片相似判定及快速查找的方案：</p>
+<ol>
+<li>接口重构或者底层图片处理库的升级，需要使用线上请求，重放到测试环境中，使用图片的相似判定方法，对线上和测试环境下载的图片进行对比，看改动是否影响了下发的图片。</li>
+<li>审核到一张涉及黄反的图片，快速查找当前图片服务里是否还有相似的图片进行屏蔽。
+本文所述方案包含：</li>
+<li>图片的相似判定方法，可用于接口变更时进行对比以保证变更不影响图片的下发。</li>
+<li>快速在海量图片中找到相似图片的方法，可用于相似黄反图片的快速查找。</li>
+</ol>
+<h5 id="相似图片判定需要符合的要求">相似图片判定需要符合的要求</h5>
+<ol>
+<li>视觉物体完全一致的图片，如下面2张图</li>
+</ol>
+<p><img src="../%E7%9B%B8%E4%BC%BC%E5%9B%BE%E7%89%87%E7%9A%84%E5%88%A4%E5%AE%9A%E5%8F%8A%E6%B5%B7%E9%87%8F%E5%9B%BE%E7%89%87%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E7%9B%B8%E4%BC%BC%E5%9B%BE%E7%89%87%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/055722d0b96b8580abaca6ef170d3cba9ff93f82.jpg" alt=""></p>
+<p><img src="../%E7%9B%B8%E4%BC%BC%E5%9B%BE%E7%89%87%E7%9A%84%E5%88%A4%E5%AE%9A%E5%8F%8A%E6%B5%B7%E9%87%8F%E5%9B%BE%E7%89%87%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E7%9B%B8%E4%BC%BC%E5%9B%BE%E7%89%87%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/fb71f59d8754d61f3f8316d7c84901b49b5cc320.png" alt=""></p>
+<ol start="2">
+<li>图片格式不一样，也可以判定</li>
+<li>图片的亮度、对比度较小调整的情况下，仍然可以判定</li>
+<li>图片等比缩放后，仍可以判定</li>
+<li>图片压缩质量变化后，仍可以判定</li>
+<li>图片有变形拉伸等，仍可以判定到有一定相似度</li>
+</ol>
+<h5 id="图片的相似判定方法">图片的相似判定方法</h5>
+<p>目前常见的图片相似判定方法如下：</p>
+<ol>
+<li>图像颜色直方图是一种经典、简单但实用的图像相似性判定方法，它基于图像中颜色或亮度的统计分布来衡量两张图像之间的相似度。</li>
+<li>感知哈希是一种用于图像相似性判断的轻量级算法，试图捕捉图像的&quot;感知特征&quot;&mdash;&mdash;也就是肉眼看到的视觉结构。其先压缩图片，然后对压缩后的图片灰度化，再对灰度化后的图片提取特征（如 DCT），最后生成生成hash值，然后用汉明距离对hash值进行距离判定，低于10的说明有相似性，低于5的说明图片一致。常见的实现方式有均值哈希（aHash）、差值哈希（dHash）、感知哈希（pHash）和wHash（小波哈希）。</li>
+<li>结构相似度（SSIM, Structural Similarity Index）模拟人眼对亮度、对比度、结构等的感知，SSIM ∈ [0, 1]，越接近1表示越相似，专注于图像整体结构信息，对像素级别变化较敏感。</li>
+<li>特征点匹配（局部特征）提取图像的关键点（角点、边缘），并进行匹配，常见方法：SIFT，SURF，ORB，通过匹配点的数量或匹配得分评估，鲁棒性强，抗旋转、缩放、部分遮挡，算法相对复杂。</li>
+<li>深度学习嵌入（CNN Embedding）用卷积神经网络（如 ResNet、Inception、EfficientNet）提取语义特征向量（一般为512或2048维），用余弦相似度、欧氏距离等度量，强语义理解能力，能区分图片内容而不仅仅是像素，较为复杂。</li>
+</ol>
+<p>本文主要叙述感知哈希用于图片相似度判定，图像颜色直方图方法判断准确率不高，而其余三种方法则实现复杂或者运行缓慢，不太适用于我们当前的业务场景需求。</p>
+<p>感知哈希的四种实现方案，优缺点如下：</p>
+<table>
+  <thead>
+      <tr>
+          <th>方法名</th>
+          <th>原理</th>
+          <th>特点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>aHash（平均哈希）</td>
+          <td>灰度图均值对比</td>
+          <td>快速但抗变形弱</td>
+      </tr>
+      <tr>
+          <td>dHash（差值哈希）</td>
+          <td>相邻像素比较差值</td>
+          <td>对细节敏感</td>
+      </tr>
+      <tr>
+          <td>pHash（感知哈希）</td>
+          <td>DCT频域特征</td>
+          <td>鲁棒性更强，推荐使用</td>
+      </tr>
+      <tr>
+          <td>wHash（小波哈希）</td>
+          <td>小波变换</td>
+          <td>抗干扰性强，但较慢</td>
+      </tr>
+  </tbody>
+</table>
+<p>综合准确率和运行性能来看，选用pHash进行图片相似度判定是比较合适的。</p>
+<h5 id="基于dct频域特征的phash的核心原理">基于DCT频域特征的pHash的核心原理</h5>
+<ol>
+<li>图像缩放，将图像缩小为 32×32 像素（或其他固定尺寸），降低复杂度但保留大致结构</li>
+<li>转为灰度图 ，将 RGB 图像转为灰度，只保留亮度信息</li>
+<li>离散余弦变换（DCT），使用 DCT 将图像转换为频域数据。DCT 会把图像转换为一堆频率系数，其中前几个系数代表整体结构，后面代表细节。</li>
+<li>提取低频特征，截取 DCT 左上角的 8×8 共 64 个低频系数（去掉最左上角的 DC 分量）</li>
+<li>生成哈希，计算这 64 个值的平均值，然后将每个值与均值比较：
+≥ 均值：置 1
+＜ 均值：置 0<br>
+得到一个 64 位的二进制字符串，即图像的 pHash</li>
+<li>示例输出（十六进制）: 3c8f9ad3739e4aa5</li>
+</ol>
+<h5 id="使用汉明距离比较两个phash">使用汉明距离比较两个pHash</h5>
+<p>汉明距离（Hamming Distance）是一种度量两个等长字符串之间差异的指标，表示两个字符串在相同位置上不同字符的个数。它最早由理查德·汉明（Richard Hamming）提出，用于纠错编码领域，如海明码。</p>
+<p>在图像相似性检测、感知哈希（aHash、dHash、pHash）中，它被广泛用于衡量两张图像的&quot;相似度&quot;。</p>
+<p>汉明距离 = A 和 B 在对应位上不相同的位数：</p>
+<pre><code>A = 1011101  
+B = 1001001  
+     ↑ ↑       （两处不同）
+
+→ 汉明距离 = 2
+</code></pre>
+<p>当我们使用感知哈希算法（如 pHash）将一张图像转为一个定长的二进制哈希值（通常是 64 位），我们可以通过汉明距离来判断图像是否相似：</p>
+<table>
+  <thead>
+      <tr>
+          <th>汉明距离</th>
+          <th>图像相似性解读</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>几乎完全一致（可能是重复）</td>
+      </tr>
+      <tr>
+          <td>1&ndash;5</td>
+          <td>高度相似（可能是轻度编辑）</td>
+      </tr>
+      <tr>
+          <td>6&ndash;10</td>
+          <td>有一定相似性（结构、构图相似，但非同图）</td>
+      </tr>
+      <tr>
+          <td>11&ndash;20</td>
+          <td>差异明显，不同图片</td>
+      </tr>
+      <tr>
+          <td>≥21</td>
+          <td>明显不同</td>
+      </tr>
+  </tbody>
+</table>
+<p>为什么通常认为 5~10 是「可接受的相似范围」？因为：</p>
+<ul>
+<li>感知哈希是模糊的特征摘要，轻度裁剪、缩放、亮度变化或压缩会导致部分位发生翻转；</li>
+<li>实践中发现，轻微变动通常造成 1&ndash;5 位哈希不同；</li>
+<li>6&ndash;10 表示局部较多的变化或是同类图片（如同一物体不同角度）；</li>
+<li>超过 15 通常是完全不同的图像。</li>
+</ul>
+<p>实际使用建议：</p>
+<ul>
+<li>如果你要「查重」：汉明距离 ≤ 5</li>
+<li>如果你要「推荐相似图」：可以接受 ≤ 10</li>
+<li>如果你要「反盗图检测」：可以考虑 ≤ 12~15，但需人工审核辅助</li>
+</ul>
+<h5 id="使用phash及汉明距离判定图片相似性示例代码go">使用pHash及汉明距离判定图片相似性示例代码（Go）</h5>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;log&quot;
+
+    // 图像格式支持
+    _ &quot;image/jpeg&quot;
+    _ &quot;image/png&quot;
+
+    &quot;github.com/corona10/goimagehash&quot;
+    &quot;github.com/disintegration/imaging&quot;
+    _ &quot;golang.org/x/image/webp&quot;
+)
+
+func main() {
+    // 加载图片
+    img1Path := &quot;img1.jpg&quot;
+    img2Path := &quot;img2.webp&quot;
+
+    img1, err := imaging.Open(img1Path)
+    if err != nil {
+        log.Fatalf(&quot;Failed to open image 1: %v&quot;, err)
+    }
+
+    img2, err := imaging.Open(img2Path)
+    if err != nil {
+        log.Fatalf(&quot;Failed to open image 2: %v&quot;, err)
+    }
+
+    // 生成 pHash
+    hash1, err := goimagehash.PerceptionHash(img1)
+    if err != nil {
+        log.Fatalf(&quot;Failed to compute pHash for img1: %v&quot;, err)
+    }
+
+    hash2, err := goimagehash.PerceptionHash(img2)
+    if err != nil {
+        log.Fatalf(&quot;Failed to compute pHash for img2: %v&quot;, err)
+    }
+
+    // 计算汉明距离
+    distance, err := hash1.Distance(hash2)
+    if err != nil {
+        log.Fatalf(&quot;Failed to calculate Hamming distance: %v&quot;, err)
+    }
+
+    fmt.Printf(&quot;pHash 1: %s\n&quot;, hash1.ToString())
+    fmt.Printf(&quot;pHash 2: %s\n&quot;, hash2.ToString())
+    fmt.Printf(&quot;汉明距离: %d\n&quot;, distance)
+
+    // 判断是否相似（阈值可以根据需求调整）
+    if distance &lt;= 10 {
+        fmt.Println(&quot;这两张图片可能是相似的 ✅&quot;)
+    } else {
+        fmt.Println(&quot;这两张图片差异较大 ❌&quot;)
+    }
+}
+</code></pre>
+<p>img1.jpg和img2.webp是完全一样的图片，只是格式不一样，输出结果如下：</p>
+<pre><code>pHash 1: p:f4b883c6338bc3cc
+pHash 2: p:f4b883c6338bc3cc
+汉明距离: 0
+这两张图片可能是相似的
+</code></pre>
+<p>将img1.jpg从400x400，缩放成100x100，进行汉明距离计算，结果仍然为0。
+将img1.jpg缩放拉伸成600x100之后，汉明距离依然为0。
+说明pHash可以判定不同格式的图片，也可以判定等比缩放的图片，对拉伸的图片也具备一定的判定能力。</p>
+<h5 id="海量图片快速查找相似图片">海量图片快速查找相似图片</h5>
+<p>黄反内容筛查这个业务场景，查出一张黄色/反动图片，需要可以快速的查找图片上传服务中是否还有相似的图片，以防止遗漏造成政策风险。如果直接把海量图片重新过一次图片审核，则成本过高，利用图片相似度判定的pHash，可以较低成本解决此问题，但把海量照片一张一张来对比pHash，则效率过于低效。</p>
+<p>基于 pHash（感知哈希） 和 LSH（局部敏感哈希）+ Redis 实现相似图片的快速查找，是一个实用且高效的解决方案。LSH（Locality Sensitive Hashing）将高维的pHash向量映射到多个桶中，使得相似的数据被映射到同一个桶，在查找时，只需比较同一个桶里的元素，降低计算量。</p>
+<p>pHash + LSH + Redis 存储图片的过程大致如下（示例说明，具体使用过程存储结构会有所调整）：
+![[phash与redis的计算过程.png]]</p>
+<p>![[相似图片海量查找.png]]</p>
+<p>用python代码简单的实现来说明使用流程：
+步骤一、计算图片的pHash</p>
+<pre><code>from PIL import Image
+import imagehash
+
+def compute_phash(image_path):
+    img = Image.open(image_path)
+    return imagehash.phash(img)  # 返回的是ImageHash对象，可以转成int或str
+</code></pre>
+<p>步骤二、将pHash值输入LSH并构建倒排索引（存入Redis），简单实现（以分段LSH为例）</p>
+<pre><code>import redis
+
+# 连接Redis
+r = redis.StrictRedis(host='localhost', port=6379, db=0)
+
+def lsh_buckets(phash_bin, band_size=8):
+    &quot;&quot;&quot;将64位phash切成8段，返回8个bucket key&quot;&quot;&quot;
+    return [phash_bin[i:i+band_size] for i in range(0, 64, band_size)]
+
+def index_image(image_id, phash_bin):
+    buckets = lsh_buckets(phash_bin)
+    for i, bucket in enumerate(buckets):
+        key = f&quot;lsh_bucket:{i}:{bucket}&quot;
+        r.sadd(key, image_id)  # 把图片ID加入桶中
+</code></pre>
+<p>步骤三、查找相似图片</p>
+<pre><code>def query_similar_images(query_phash_bin, threshold=10):
+    candidate_ids = set()
+    buckets = lsh_buckets(query_phash_bin)
+    
+    for i, bucket in enumerate(buckets):
+        key = f&quot;lsh_bucket:{i}:{bucket}&quot;
+        ids = r.smembers(key)
+        candidate_ids.update(ids)
+    
+    # 过滤阶段：计算海明距离
+    similar_images = []
+    query_int = int(query_phash_bin, 2)
+    
+    for cid in candidate_ids:
+        cid = cid.decode()  # Redis返回bytes
+        stored_phash = r.get(f&quot;phash:{cid}&quot;)
+        if stored_phash:
+            stored_int = int(stored_phash.decode(), 2)
+            dist = bin(query_int ^ stored_int).count(&quot;1&quot;)
+            if dist &lt;= threshold:
+                similar_images.append((cid, dist))
+    
+    # 按距离排序
+    return sorted(similar_images, key=lambda x: x[1])
+</code></pre>
+<p>步骤4：存储图片pHash（辅助步骤），在图片首次索引时，同时存储其pHash</p>
+<pre><code>def store_phash(image_id, phash_bin):
+    r.set(f&quot;phash:{image_id}&quot;, phash_bin)
+</code></pre>
+<p>我们从一张图像中提取出 <strong>pHash 值</strong>（通常是 64 位二进制字符串，例如）：</p>
+<pre><code>pHash = &quot;1101010110010010010110100100101010100110010110101010101010101010&quot;
+</code></pre>
+<p>将 pHash 切分为多个 <strong>bands</strong>（即 LSH 的子哈希段）：</p>
+<pre><code>bands = [
+  '11010101',  # band 0
+  '10010010',  # band 1
+  '01011010',  # ...
+  '01001010',
+  '10100110',
+  '01011010',
+  '10101010',
+  '10101010'
+]
+</code></pre>
+<p>为每个 band 生成 Redis 中的桶 key（中间的数据即为哈希段的序号，分为8段）：</p>
+<pre><code>lsh_bucket:0:11010101
+lsh_bucket:1:10010010
+...
+lsh_bucket:7:10101010
+</code></pre>
+<p>以上述的 lsh_bucket:x:xxxxxxxx 为Redis桶的key，桶的存储类型为Set，值是图片id。pHash分成8段，每段按序生成桶key，取出桶key对应的图片id的集合，然后找到每个图片的pHash，进行汉明距离的计算，找到相似图片。</p>
+<p>分成8个段，通过8个桶的联合查找，提高查全率。</p>
+<h5 id="基于lsh查找相似图片的查全率">基于LSH查找相似图片的查全率</h5>
+<p><script type="text/javascript" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<div class="mathjax">
+  
+$$
+P(s) = 1 - (1 - s^r)^b 
+$$
+
+</div>
+
+上述公式是在描述基于分段哈希 (banding technique) 的 LSH 方法中，<strong>估计具有相似度 s 的两个元素在至少一个 band 中发生碰撞的概率</strong>的常见且被广泛使用的公式。其中：</p>
+<ul>
+<li>s 是两个元素的相似度（1 - 距离/总位数），汉明距离=6，总位数为64，则s=1-6/64=0.906</li>
+<li>r 是每 band 的位数</li>
+<li>b 是 band 数量
+举例：如果两张图片海明距离是 6（相似度约 90.6%）
+假设 r = 8, b = 8</li>
+<li>假设 <code>r = 8</code>, <code>b = 8</code></li>
+<li>则被 LSH 检出的概率 ≈ 1 - (1 - 0.906⁸)⁸ ≈ 99.21%</li>
+</ul>
+<p>如何选择 r 和 b？一般经验法则（以 64 位 pHash 为例）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>目标</th>
+          <th>建议设置</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>相似图像查全率高（Recall 优先）</td>
+          <td><code>r = 8</code>, <code>b = 8</code>（即 64 位分成 8 个 band，每 band 8 位）</td>
+      </tr>
+      <tr>
+          <td>精度更高（减少误报）</td>
+          <td><code>r = 16</code>, <code>b = 4</code>（更严格 band 规则）</td>
+      </tr>
+      <tr>
+          <td>模糊匹配更宽松（召回多）</td>
+          <td><code>r = 4</code>, <code>b = 16</code>（宽容 band）</td>
+      </tr>
+  </tbody>
+</table>
+<p>实例对比（假设 s = 0.9，汉明距离=6.4）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>(r, b)</th>
+          <th><code>P_hit (s=0.9)</code></th>
+          <th>候选图数量趋势</th>
+          <th>精度</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>(4, 16)</td>
+          <td>≈ 99.8%</td>
+          <td>多（宽松）</td>
+          <td>低</td>
+      </tr>
+      <tr>
+          <td>(8, 8)</td>
+          <td>≈ 98.8%</td>
+          <td>适中</td>
+          <td>中</td>
+      </tr>
+      <tr>
+          <td>(16, 4)</td>
+          <td>≈ 89.0%</td>
+          <td>少</td>
+          <td>高</td>
+      </tr>
+      <tr>
+          <td>(32, 2)</td>
+          <td>≈ 66.0%</td>
+          <td>很少</td>
+          <td>很高</td>
+      </tr>
+  </tbody>
+</table>
+<p>越小的 <code>r</code>，每个 band 越容易碰撞 → <strong>查全率高但误报多</strong><br>
+越大的 <code>r</code>，要求越严格 → <strong>误报少但漏掉一些相似图像</strong>
+推荐组合总结（64位 pHash 场景）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>场景</th>
+          <th>推荐参数 (<code>r</code>, <code>b</code>)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>默认使用（平衡 recall/precision）</td>
+          <td>(8, 8)</td>
+      </tr>
+      <tr>
+          <td>想召回更多相似图（对 recall 要求高）</td>
+          <td>(4, 16)</td>
+      </tr>
+      <tr>
+          <td>精度要求极高（减少误判）</td>
+          <td>(16, 4)</td>
+      </tr>
+  </tbody>
+</table>
+<p>假设你有 1,000,000 张图，使用 64 位 pHash，分 8 个 band。
+如果 r = 4：每个 band 有 2⁴ = 16 种可能 → 分 bucket 粒度很粗，一个 bucket 可能有几万个图，查询时要对成千上万张图做 Hamming 比较（慢）
+如果 r = 8：每个 band 有 2⁸ = 256 种可能 → 分得细，每个 bucket 只有几百张图，查询候选少，速度更快</p>
+<p>综上，使用每band的位数r=8，band的数量b=8，在64位pHash的使用场景中，查全率和查找速度都是相对均衡的。</p>
+<h5 id="总结">总结</h5>
+<p>利用图片的pHash进行相似图片的查找，计算速度较快，准确率高，在配合图片宽高数据等，可以用于图片下发服务流量对比测试，确保接口重构、优化过程中没有下发错误的照片。而使用LSH + Redis，则可以实现海量图片中相似图片的快速查找，在图片的审核上有较好的应用场景，可以快速找到图片上传服务里相似的黄反图片，且成本低廉。</p>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2025-10-09</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0icon/">
+			Next<br>添加icon
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/Life-Reboot-Journal/about/about/">
+			Previous<br>About Me
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://localhost:1313/Life-Reboot-Journal/">
+    
+        <div class="nav-title">
+            Life Reboot Journal
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/Life-Reboot-Journal/">
+                Home
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/Life-Reboot-Journal/trading/">
+                Trading
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/Life-Reboot-Journal/about/about/">
+                About
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/Life-Reboot-Journal/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2025 Life Reboot Journal
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div>
+
+<div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2025 Life Reboot Journal
+	
+</div>
+            </div>
+    
+    <script src="/Life-Reboot-Journal/js/journal.js"></script></body>
+</html>
