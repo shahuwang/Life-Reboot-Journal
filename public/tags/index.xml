@@ -16,10 +16,10 @@
       <description></description>
     </item>
     <item>
-      <title>Life</title>
-      <link>http://localhost:1313/Life-Reboot-Journal/tags/life/</link>
+      <title>Obsidian</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/tags/obsidian/</link>
       <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/Life-Reboot-Journal/tags/life/</guid>
+      <guid>http://localhost:1313/Life-Reboot-Journal/tags/obsidian/</guid>
       <description></description>
     </item>
     <item>
@@ -27,6 +27,13 @@
       <link>http://localhost:1313/Life-Reboot-Journal/tags/programming/</link>
       <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/Life-Reboot-Journal/tags/programming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Trading</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/tags/trading/</link>
+      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/tags/trading/</guid>
       <description></description>
     </item>
   </channel>

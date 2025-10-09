@@ -16,6 +16,13 @@
       <description>&lt;p&gt;在项目的settings页面，找到Pages，把 Build and deployment改成 Github Actions.&lt;/p&gt;&#xA;&lt;p&gt;然后在 Use a suggested workflow, browse all workflows，找到hugo，点击生成默认的 workflows，然后把这个workflows的hugo.yaml做如下修改：&lt;/p&gt;&#xA;&lt;p&gt;1、HUGO_VERSION 改成与自己的版本一致&lt;/p&gt;&#xA;&lt;p&gt;2、baseUL改成：&lt;code&gt;--baseURL &amp;quot;https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/&amp;quot;&lt;/code&gt;，原来的方式是主page级别，我要的是项目级的page.&lt;/p&gt;&#xA;&lt;p&gt;后续只要git push就会自动创建部署了。在这个页面可以看到部署进度 &lt;a href=&#34;https://github.com/shahuwang/Life-Reboot-Journal/deployments/github-pages&#34;&gt;https://github.com/shahuwang/Life-Reboot-Journal/deployments/github-pages&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;p&gt;这样子后续在没有hugo的电脑上，只要编辑文件的markdown就可以了，github Action会自动生成html。&lt;/p&gt;</description>
     </item>
     <item>
+      <title>obsidian与hugo结合的方法.md</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/notes/obsidian%E4%B8%8Ehugo-%E7%BB%93%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/notes/obsidian%E4%B8%8Ehugo-%E7%BB%93%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
+      <description>&lt;p&gt;由于两者的markdown配置不一样，无法直接把obsidian编辑的markdown放到github page项目里。不过可以使用obsidian的Enhancing Export插件，把obsidian的文章导出为hugo的markdown。&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>使用Diary主题解决tag页面跳转404的问题</title>
       <link>http://localhost:1313/Life-Reboot-Journal/notes/tags%E8%B7%B3%E8%BD%AC404%E7%9A%84%E9%97%AE%E9%A2%98/</link>
       <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
@@ -27,7 +34,7 @@
       <link>http://localhost:1313/Life-Reboot-Journal/notes/%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%AA%E6%98%BE%E7%A4%BA%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81%E7%9A%84%E6%96%B9%E6%B3%95/</link>
       <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/Life-Reboot-Journal/notes/%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%AA%E6%98%BE%E7%A4%BA%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
-      <description>&lt;p&gt;添加如下标签，标签之前的文章就会展示在列表页，之后的则不会展示&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <description>&lt;p&gt;添加如下标签，标签之前的文章就会展示在列表页，之后的则不会展示&lt;/p&gt;&#xA;&lt;p&gt;&amp;lt;!--more--&amp;gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>如何插入图片</title>
@@ -35,6 +42,13 @@
       <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5/</guid>
       <description>&lt;p&gt;直接在文章markdown文件的同级目录下，建一个与文章同名的文件夹，然后使用这样子的方式即可插入图片 &lt;code&gt;![说明](图片.png)&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>支持数学公式</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/notes/%E6%94%AF%E6%8C%81%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</link>
+      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/notes/%E6%94%AF%E6%8C%81%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</guid>
+      <description>&lt;p&gt;obsidian导出的markdown文章有数学公式，我目前使用的diary这个插件，没有数学公式支持，增加mathjax的支持方法如下：&lt;/p&gt;&#xA;&lt;p&gt;1、在theme/hugo-theme-diary/layouts/shotcodes/增加 mathjax.html，内容如下：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;async&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&amp;#34;&lt;/span&gt;&amp;gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;mathjax&amp;#34;&lt;/span&gt;&amp;gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  {{ .Inner | safeHTML }}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;增加后即可自动支持mathjax的数学公式了.&lt;/p&gt;</description>
     </item>
     <item>
       <title>添加icon</title>
