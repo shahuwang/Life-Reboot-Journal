@@ -36,6 +36,7 @@
         
         <guid>http://localhost:1313/Life-Reboot-Journal/notes/obsidian%E4%B8%8Ehugo-%E7%BB%93%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
         <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/notes/obsidian%E4%B8%8Ehugo-%E7%BB%93%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95/ -&lt;p&gt;由于两者的markdown配置不一样，无法直接把obsidian编辑的markdown放到github page项目里。不过可以使用obsidian的Enhancing Export插件，把obsidian的文章导出为hugo的markdown。&lt;/p&gt;
+&lt;p&gt;把导出的markdown放到github page的content对应目录下，即可。&lt;/p&gt;
 - http://localhost:1313/Life-Reboot-Journal/notes/obsidian%E4%B8%8Ehugo-%E7%BB%93%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95/ - </description>
         </item>
     
