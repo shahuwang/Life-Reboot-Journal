@@ -169,6 +169,42 @@
     <div class="post-list-container post-list-container-no-background">
         
         
+            <a href="/Life-Reboot-Journal/deep-dives/%E7%9B%B8%E4%BC%BC%E5%9B%BE%E7%89%87%E7%9A%84%E5%88%A4%E5%AE%9A%E5%8F%8A%E6%B5%B7%E9%87%8F%E5%9B%BE%E7%89%87%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E7%9B%B8%E4%BC%BC%E5%9B%BE%E7%89%87%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                相似图片的判定及海量图片快速查找相似图片的实现方案
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    <h5 id="前言">前言</h5>
+<p>本文所述相似图片，即为在视觉上一致的图片，因图片格式、形状变化、图片亮度等等变化，无法使用图片md5的方法来判断图片是否相似。在当前业务场景中，判断两张图片是否视觉一致，以及快速在海量图片中找到视觉相似的图片，有着迫切的需求，如下2个场景急需图片相似判定及快速查找的方案：</p>
+<ol>
+<li>接口重构或者底层图片处理库的升级，需要使用线上请求，重放到测试环境中，使用图片的相似判定方法，对线上和测试环境下载的图片进行对比，看改动是否影响了下发的图片。</li>
+<li>审核到一张涉及黄反的图片，快速查找当前图片服务里是否还有相似的图片进行屏蔽。
+本文所述方案包含：</li>
+<li>图片的相似判定方法，可用于接口变更时进行对比以保证变更不影响图片的下发。</li>
+<li>快速在海量图片中找到相似图片的方法，可用于相似黄反图片的快速查找。</li>
+</ol>
+                                
+                            </div>
+                            <div class="post-item-meta">
+    2025-10-09
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
             <a href="/Life-Reboot-Journal/about/about/" class="a-block">
                 <div class="post-item-wrapper">
                     <div class="post-item post-item-no-divider">

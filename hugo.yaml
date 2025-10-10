@@ -2,7 +2,7 @@ theme: hugo-theme-diary
 baseURL: https://shahuwang.github.io/Life-Reboot-Journal/
 languageCode: en-us
 title: Life Reboot Journal
-
+timeZone: "Asia/Shanghai"
 # 启用目录（可选）
 markup:
   tableOfContents:

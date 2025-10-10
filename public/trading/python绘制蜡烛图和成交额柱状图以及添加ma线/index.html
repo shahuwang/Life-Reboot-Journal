@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/Life-Reboot-Journal/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Life-Reboot-Journal/livereload" data-no-instant defer></script>
+<title>Python绘制蜡烛图和成交额柱状图以及添加MA线</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=5" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+<link rel="icon" href="http://localhost:1313/Life-Reboot-Journal/images/favicon.ico">
+
+
+
+      <script src="/Life-Reboot-Journal/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/Life-Reboot-Journal/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/Life-Reboot-Journal/scss/dark-mode.min.cb53f1bee2b8900cb4f082afbf00175d6618f281cf9a2fe8619e3b52d20b5721.css" integrity="sha256-y1PxvuK4kAy08IKvvwAXXWYY8oHPmi/oYZ47UtILVyE=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/Life-Reboot-Journal/">
+                    Home
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/Life-Reboot-Journal/deep-dives/">
+                    Deep Dives
+                </a>
+                
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/Life-Reboot-Journal/trading/">
+                    Trading
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/Life-Reboot-Journal/about/about/">
+                    About
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/Life-Reboot-Journal/tags/">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="http://localhost:1313/Life-Reboot-Journal/">
+            Life Reboot Journal
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://localhost:1313/Life-Reboot-Journal/">
+        <div class="single-column-header-title">Life Reboot Journal</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Python绘制蜡烛图和成交额柱状图以及添加MA线
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2025-10-11 00:55
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/Life-Reboot-Journal/tags/trading">Trading</a>
+                                &nbsp;
+                            
+                                <a href="/Life-Reboot-Journal/tags/ma">MA</a>
+                                &nbsp;
+                            
+                                <a href="/Life-Reboot-Journal/tags/plot">Plot</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>学习程序化交易的第一步，绘制蜡烛图、MA线、成交额图，图片框架我使用的是plotly，和pandas以及jupyter的结合非常好。下图是我绘制的腾讯的股票蜡烛图、成交额图、以及在上面加上三条常规的MA线。</p>
+<p><img src="../Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/b35a6389489436550327c409b6142a5103e0b1a0.png" alt="蜡烛图">
+<img src="../Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/05ca2ca8415f25ec01c9aea9fdeaeb0e2d34ec7f.png" alt="成交额图">
+在jupyter上，点击对应的位置，可以有图示数据的展示。</p>
+<p>示例实现代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 绘制蜡烛图</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> plotly.graph_objects <span style="color:#66d9ef">as</span> go
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> plotly.io <span style="color:#66d9ef">as</span> pio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> plotly.colors <span style="color:#66d9ef">as</span> pic
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> quantify.logger <span style="color:#f92672">import</span> Logger
+</span></span><span style="display:flex;"><span>logger <span style="color:#f92672">=</span> Logger<span style="color:#f92672">.</span>get_logger()
+</span></span><span style="display:flex;"><span>pio<span style="color:#f92672">.</span>renderers<span style="color:#f92672">.</span>default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;notebook&#34;</span>  <span style="color:#75715e"># 使用默认浏览器打开 HTML 文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 只展示3位小数</span>
+</span></span><span style="display:flex;"><span>pandas<span style="color:#f92672">.</span>set_option(<span style="color:#e6db74">&#39;display.float_format&#39;</span>, <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{:,.3f}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">candleStick</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, quote_ctx, df: pandas<span style="color:#f92672">.</span>DataFrame):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>ctx <span style="color:#f92672">=</span> quote_ctx
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>sort_values(<span style="color:#e6db74">&#39;time_key&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 因为存储的数据放到了100万倍，这里要做处理</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;open&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;open&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;close&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;close&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;high&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;high&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;low&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;low&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;last_close&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;last_close&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;turnover&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;turnover&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">100000000000000.0</span> <span style="color:#75715e">#以亿为单位</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;pe_ratio&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;pe_ratio&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;change_rate&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;change_rate&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>df <span style="color:#f92672">=</span> df
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fig <span style="color:#f92672">=</span> go<span style="color:#f92672">.</span>Figure()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>ma_periods <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">addMA</span>(self, period: int):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> period <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>ma_periods:
+</span></span><span style="display:flex;"><span>            logger<span style="color:#f92672">.</span>warning(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;已经添加过</span><span style="color:#e6db74">{</span>period<span style="color:#e6db74">}</span><span style="color:#e6db74">日均线&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>df
+</span></span><span style="display:flex;"><span>        ma_label <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;MA</span><span style="color:#e6db74">{</span>period<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        df[ma_label] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;close&#39;</span>]<span style="color:#f92672">.</span>rolling(window<span style="color:#f92672">=</span>period)<span style="color:#f92672">.</span>mean()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>ma_periods<span style="color:#f92672">.</span>append(period)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">maPloter</span>(self):
+</span></span><span style="display:flex;"><span>        colors <span style="color:#f92672">=</span> pic<span style="color:#f92672">.</span>qualitative<span style="color:#f92672">.</span>Plotly
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i, period <span style="color:#f92672">in</span> enumerate(self<span style="color:#f92672">.</span>ma_periods):
+</span></span><span style="display:flex;"><span>            ma_label <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;MA</span><span style="color:#e6db74">{</span>period<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>add_trace(go<span style="color:#f92672">.</span>Scatter(
+</span></span><span style="display:flex;"><span>                x<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>df[<span style="color:#e6db74">&#39;time_key&#39;</span>],
+</span></span><span style="display:flex;"><span>                y<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>df[ma_label],
+</span></span><span style="display:flex;"><span>                mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lines&#39;</span>,
+</span></span><span style="display:flex;"><span>                line<span style="color:#f92672">=</span>dict(color<span style="color:#f92672">=</span>colors[i <span style="color:#f92672">%</span> len(colors)], width<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>                name<span style="color:#f92672">=</span>ma_label
+</span></span><span style="display:flex;"><span>            ))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">klinePloter</span>(self):
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>df
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># K 线</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>add_trace(go<span style="color:#f92672">.</span>Candlestick(
+</span></span><span style="display:flex;"><span>            x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#39;time_key&#39;</span>],
+</span></span><span style="display:flex;"><span>            open<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#39;open&#39;</span>],
+</span></span><span style="display:flex;"><span>            high<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#39;high&#39;</span>],
+</span></span><span style="display:flex;"><span>            low<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#39;low&#39;</span>],
+</span></span><span style="display:flex;"><span>            close<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#39;close&#39;</span>],
+</span></span><span style="display:flex;"><span>            increasing_line_color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;green&#39;</span>,
+</span></span><span style="display:flex;"><span>            decreasing_line_color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;red&#39;</span>,
+</span></span><span style="display:flex;"><span>            name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;K线&#39;</span>
+</span></span><span style="display:flex;"><span>        ))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">plotShow</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_updateLayout()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_updateLayout</span>(self):
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>df
+</span></span><span style="display:flex;"><span>        fig <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>fig
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 确定 Y 轴的刻度范围</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 找到所有价格的最小值和最大值</span>
+</span></span><span style="display:flex;"><span>        min_price <span style="color:#f92672">=</span> min(df[<span style="color:#e6db74">&#39;low&#39;</span>])
+</span></span><span style="display:flex;"><span>        max_price <span style="color:#f92672">=</span> max(df[<span style="color:#e6db74">&#39;high&#39;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 从最小值向下取整到最接近的5的倍数</span>
+</span></span><span style="display:flex;"><span>        start_tick <span style="color:#f92672">=</span> int(np<span style="color:#f92672">.</span>floor(min_price <span style="color:#f92672">/</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 从最大值向上取整到最接近的5的倍数</span>
+</span></span><span style="display:flex;"><span>        end_tick <span style="color:#f92672">=</span> int(np<span style="color:#f92672">.</span>ceil(max_price <span style="color:#f92672">/</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 使用 numpy.arange() 创建刻度值列表, 每隔10一个刻度</span>
+</span></span><span style="display:flex;"><span>        tick_values <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(start_tick, end_tick <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>        fig<span style="color:#f92672">.</span>update_layout(
+</span></span><span style="display:flex;"><span>            title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;股票 K 线图&#39;</span>,
+</span></span><span style="display:flex;"><span>            xaxis_rangeslider_visible<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>            xaxis_title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;日期&#39;</span>,
+</span></span><span style="display:flex;"><span>            yaxis_title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;价格&#39;</span>,
+</span></span><span style="display:flex;"><span>            width<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>,
+</span></span><span style="display:flex;"><span>            height<span style="color:#f92672">=</span><span style="color:#ae81ff">600</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 设置图表背景为纯白色</span>
+</span></span><span style="display:flex;"><span>            plot_bgcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;white&#39;</span>,
+</span></span><span style="display:flex;"><span>            paper_bgcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;white&#39;</span>,
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 设置 X 轴样式</span>
+</span></span><span style="display:flex;"><span>            xaxis<span style="color:#f92672">=</span>dict(
+</span></span><span style="display:flex;"><span>                title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;日期&#39;</span>,
+</span></span><span style="display:flex;"><span>                showgrid<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>                gridcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#cccccc&#39;</span>,  <span style="color:#75715e"># 细灰色网格线</span>
+</span></span><span style="display:flex;"><span>                gridwidth<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,          <span style="color:#75715e"># 宽度为1</span>
+</span></span><span style="display:flex;"><span>                showline<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>                zeroline<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>                linecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>,  <span style="color:#75715e"># 边框颜色</span>
+</span></span><span style="display:flex;"><span>                linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>        <span style="color:#75715e"># 边框宽度    </span>
+</span></span><span style="display:flex;"><span>            ),
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 设置 Y 轴样式</span>
+</span></span><span style="display:flex;"><span>            yaxis<span style="color:#f92672">=</span>dict(
+</span></span><span style="display:flex;"><span>                title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;价格&#39;</span>,
+</span></span><span style="display:flex;"><span>                showgrid<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>                gridcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#cccccc&#39;</span>,  <span style="color:#75715e"># 细灰色网格线</span>
+</span></span><span style="display:flex;"><span>                gridwidth<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>                showline<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>                zeroline<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>                linecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>,  <span style="color:#75715e"># 边框颜色</span>
+</span></span><span style="display:flex;"><span>                linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,        <span style="color:#75715e"># 边框宽度,</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># 指定 Y 轴的刻度数量</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># nticks=5  # 您可以尝试不同的数值，比如 10, 20, 30</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># 使用 tickvals 明确指定刻度值</span>
+</span></span><span style="display:flex;"><span>                tickvals<span style="color:#f92672">=</span>tick_values
+</span></span><span style="display:flex;"><span>            ),
+</span></span><span style="display:flex;"><span>            legend<span style="color:#f92672">=</span>dict(orientation<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;h&#34;</span>, yanchor<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bottom&#34;</span>, y<span style="color:#f92672">=</span><span style="color:#ae81ff">1.02</span>, xanchor<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;right&#34;</span>, x<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>            hovermode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;x unified&#39;</span>,  <span style="color:#75715e"># 统一的悬浮显示</span>
+</span></span><span style="display:flex;"><span>            hoverlabel<span style="color:#f92672">=</span>dict(
+</span></span><span style="display:flex;"><span>                bgcolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;white&#34;</span>,       <span style="color:#75715e"># 背景颜色</span>
+</span></span><span style="display:flex;"><span>                font_size<span style="color:#f92672">=</span><span style="color:#ae81ff">14</span>,          <span style="color:#75715e"># 字体大小</span>
+</span></span><span style="display:flex;"><span>                font_family<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Rockwell&#34;</span>,<span style="color:#75715e"># 字体</span>
+</span></span><span style="display:flex;"><span>                namelength<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>,         <span style="color:#75715e"># 提示框显示完整名字</span>
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>            ),
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 鼠标悬停时显示十字星线</span>
+</span></span><span style="display:flex;"><span>            hoverdistance<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,  <span style="color:#75715e"># 鼠标距离触发十字星线的距离</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>       
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 绘制成交额柱状图</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> plotly.graph_objects <span style="color:#66d9ef">as</span> go
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> plotly.io <span style="color:#66d9ef">as</span> pio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> plotly.colors <span style="color:#66d9ef">as</span> pic
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> quantify.logger <span style="color:#f92672">import</span> Logger
+</span></span><span style="display:flex;"><span>logger <span style="color:#f92672">=</span> Logger<span style="color:#f92672">.</span>get_logger()
+</span></span><span style="display:flex;"><span>pio<span style="color:#f92672">.</span>renderers<span style="color:#f92672">.</span>default <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;notebook&#34;</span>  <span style="color:#75715e"># 使用默认浏览器打开 HTML 文件</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TurnoverBar</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, quote_ctx, df: pandas<span style="color:#f92672">.</span>DataFrame):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>ctx <span style="color:#f92672">=</span> quote_ctx
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>sort_values(<span style="color:#e6db74">&#39;time_key&#39;</span>)
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;open&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;open&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;close&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;close&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;high&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;high&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;low&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;low&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;last_close&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;last_close&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;turnover&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;turnover&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">100000000000000.0</span>  <span style="color:#75715e">#成交量以亿为单位</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;pe_ratio&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;pe_ratio&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        df[<span style="color:#e6db74">&#39;change_rate&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;change_rate&#39;</span>]<span style="color:#f92672">/</span><span style="color:#ae81ff">1000000.0</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>df <span style="color:#f92672">=</span> df
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fig <span style="color:#f92672">=</span> go<span style="color:#f92672">.</span>Figure()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>ma_periods <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">addMA</span>(self, period: int):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> period <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>ma_periods:
+</span></span><span style="display:flex;"><span>            logger<span style="color:#f92672">.</span>warning(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;已经添加过</span><span style="color:#e6db74">{</span>period<span style="color:#e6db74">}</span><span style="color:#e6db74">日均线&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>df
+</span></span><span style="display:flex;"><span>        ma_label <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;MA</span><span style="color:#e6db74">{</span>period<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        df[ma_label] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;turnover&#39;</span>]<span style="color:#f92672">.</span>rolling(window<span style="color:#f92672">=</span>period)<span style="color:#f92672">.</span>mean()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>ma_periods<span style="color:#f92672">.</span>append(period)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">plotShow</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_updateLayout()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">maPloter</span>(self):
+</span></span><span style="display:flex;"><span>        colors <span style="color:#f92672">=</span> pic<span style="color:#f92672">.</span>qualitative<span style="color:#f92672">.</span>Plotly
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i, period <span style="color:#f92672">in</span> enumerate(self<span style="color:#f92672">.</span>ma_periods):
+</span></span><span style="display:flex;"><span>            ma_label <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;MA</span><span style="color:#e6db74">{</span>period<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>add_trace(go<span style="color:#f92672">.</span>Scatter(
+</span></span><span style="display:flex;"><span>                x<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>df[<span style="color:#e6db74">&#39;time_key&#39;</span>],
+</span></span><span style="display:flex;"><span>                y<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>df[ma_label],
+</span></span><span style="display:flex;"><span>                mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lines&#39;</span>,
+</span></span><span style="display:flex;"><span>                line<span style="color:#f92672">=</span>dict(color<span style="color:#f92672">=</span>colors[i <span style="color:#f92672">%</span> len(colors)], width<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>                name<span style="color:#f92672">=</span>ma_label
+</span></span><span style="display:flex;"><span>            ))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">turnoverBarPloter</span>(self):
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>df
+</span></span><span style="display:flex;"><span>        colors <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(df[<span style="color:#e6db74">&#39;close&#39;</span>] <span style="color:#f92672">&gt;=</span> df[<span style="color:#e6db74">&#39;open&#39;</span>], <span style="color:#e6db74">&#39;green&#39;</span>, <span style="color:#e6db74">&#39;red&#39;</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fig<span style="color:#f92672">.</span>add_trace(go<span style="color:#f92672">.</span>Bar(
+</span></span><span style="display:flex;"><span>            x<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#39;time_key&#39;</span>],
+</span></span><span style="display:flex;"><span>            y<span style="color:#f92672">=</span>df[<span style="color:#e6db74">&#39;turnover&#39;</span>],
+</span></span><span style="display:flex;"><span>            marker_color<span style="color:#f92672">=</span>colors,
+</span></span><span style="display:flex;"><span>            name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;成交额&#39;</span>,
+</span></span><span style="display:flex;"><span>            opacity<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span> <span style="color:#75715e"># 透明度</span>
+</span></span><span style="display:flex;"><span>        ))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_updateLayout</span>(self):
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>df
+</span></span><span style="display:flex;"><span>        fig <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>fig
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 确定 Y 轴的刻度范围</span>
+</span></span><span style="display:flex;"><span>        max_turnover <span style="color:#f92672">=</span> max(df[<span style="color:#e6db74">&#39;turnover&#39;</span>])
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 从最大值向上取整到最接近的5的倍数</span>
+</span></span><span style="display:flex;"><span>        end_tick <span style="color:#f92672">=</span> int(np<span style="color:#f92672">.</span>ceil(max_turnover <span style="color:#f92672">/</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>        fig<span style="color:#f92672">.</span>update_layout(
+</span></span><span style="display:flex;"><span>            title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;成交额图&#39;</span>,
+</span></span><span style="display:flex;"><span>            xaxis_title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;时间&#39;</span>,
+</span></span><span style="display:flex;"><span>            yaxis_title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;成交额(亿)&#39;</span>,
+</span></span><span style="display:flex;"><span>            yaxis<span style="color:#f92672">=</span>dict(range<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>, end_tick]),
+</span></span><span style="display:flex;"><span>            xaxis_tickformat<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;%Y-%m-</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>            hovermode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;x unified&#39;</span>  <span style="color:#75715e">#可以让多个图的hover信息同步显示</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> futu
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> quantify.stock.historyKline <span style="color:#f92672">import</span> HistoryKLineQuery
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> quantify.plot.candleStick <span style="color:#f92672">import</span> candleStick
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> quantify.plot.turnoverBar <span style="color:#f92672">import</span> TurnoverBar
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> quantify.config.config <span style="color:#f92672">import</span> config
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> IPython.display <span style="color:#f92672">import</span> display
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> quantify.logger <span style="color:#f92672">import</span> Logger
+</span></span><span style="display:flex;"><span>logger <span style="color:#f92672">=</span> Logger<span style="color:#f92672">.</span>get_logger()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">plotTest</span>():
+</span></span><span style="display:flex;"><span>    quote_ctx <span style="color:#f92672">=</span> futu<span style="color:#f92672">.</span>OpenQuoteContext(host<span style="color:#f92672">=</span>config<span style="color:#f92672">.</span>futu_openD<span style="color:#f92672">.</span>host, port<span style="color:#f92672">=</span>config<span style="color:#f92672">.</span>futu_openD<span style="color:#f92672">.</span>port)  <span style="color:#75715e"># 创建行情对象</span>
+</span></span><span style="display:flex;"><span>    hisk <span style="color:#f92672">=</span> HistoryKLineQuery(ctx<span style="color:#f92672">=</span>quote_ctx)
+</span></span><span style="display:flex;"><span>    df <span style="color:#f92672">=</span> hisk<span style="color:#f92672">.</span>query_kline(<span style="color:#e6db74">&#34;HK&#34;</span>, <span style="color:#e6db74">&#34;00700&#34;</span>, <span style="color:#e6db74">&#34;2025-06-01&#34;</span>, <span style="color:#e6db74">&#34;2025-10-10&#34;</span>, futu<span style="color:#f92672">.</span>KLType<span style="color:#f92672">.</span>K_DAY) <span style="color:#75715e">#type: ignore</span>
+</span></span><span style="display:flex;"><span>    dfadj <span style="color:#f92672">=</span> hisk<span style="color:#f92672">.</span>adjusted_forward_price(<span style="color:#e6db74">&#34;HK&#34;</span>, <span style="color:#e6db74">&#34;00700&#34;</span>, df)
+</span></span><span style="display:flex;"><span>    cs <span style="color:#f92672">=</span> candleStick(quote_ctx, dfadj)
+</span></span><span style="display:flex;"><span>    cs<span style="color:#f92672">.</span>klinePloter()
+</span></span><span style="display:flex;"><span>    cs<span style="color:#f92672">.</span>addMA(<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>    cs<span style="color:#f92672">.</span>addMA(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>    cs<span style="color:#f92672">.</span>addMA(<span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>    cs<span style="color:#f92672">.</span>maPloter()
+</span></span><span style="display:flex;"><span>    cs<span style="color:#f92672">.</span>plotShow()
+</span></span><span style="display:flex;"><span>    tb <span style="color:#f92672">=</span> TurnoverBar(quote_ctx, dfadj)
+</span></span><span style="display:flex;"><span>    tb<span style="color:#f92672">.</span>turnoverBarPloter()
+</span></span><span style="display:flex;"><span>    tb<span style="color:#f92672">.</span>addMA(<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>    tb<span style="color:#f92672">.</span>addMA(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>    tb<span style="color:#f92672">.</span>addMA(<span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>    tb<span style="color:#f92672">.</span>maPloter()
+</span></span><span style="display:flex;"><span>    tb<span style="color:#f92672">.</span>plotShow()
+</span></span><span style="display:flex;"><span>    quote_ctx<span style="color:#f92672">.</span>close()  <span style="color:#75715e"># 关闭行情对象</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    plotTest()
+</span></span></code></pre></div>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2025-10-11</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/">
+			Previous<br>Github Page自动更新submodule的主题
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://localhost:1313/Life-Reboot-Journal/">
+    
+        <div class="nav-title">
+            Life Reboot Journal
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/Life-Reboot-Journal/">
+                Home
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/Life-Reboot-Journal/deep-dives/">
+                Deep Dives
+            </a>
+            
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/Life-Reboot-Journal/trading/">
+                Trading
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/Life-Reboot-Journal/about/about/">
+                About
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/Life-Reboot-Journal/tags/">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2025 Life Reboot Journal
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div>
+
+<div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2025 Life Reboot Journal
+	
+</div>
+            </div>
+    
+    <script src="/Life-Reboot-Journal/js/journal.js"></script></body>
+</html>
