@@ -6,13 +6,27 @@
     <description>Recent content in Tags on Life Reboot Journal</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/Life-Reboot-Journal/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GithubPage</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/tags/githubpage/</link>
+      <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/tags/githubpage/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Hugo</title>
       <link>http://localhost:1313/Life-Reboot-Journal/tags/hugo/</link>
-      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/Life-Reboot-Journal/tags/hugo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Trading</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/tags/trading/</link>
+      <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/tags/trading/</guid>
       <description></description>
     </item>
     <item>
@@ -27,13 +41,6 @@
       <link>http://localhost:1313/Life-Reboot-Journal/tags/programming/</link>
       <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/Life-Reboot-Journal/tags/programming/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Trading</title>
-      <link>http://localhost:1313/Life-Reboot-Journal/tags/trading/</link>
-      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/Life-Reboot-Journal/tags/trading/</guid>
       <description></description>
     </item>
   </channel>

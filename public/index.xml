@@ -6,9 +6,117 @@
     <description>Recent content on Life Reboot Journal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Oct 2025 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="http://localhost:1313/Life-Reboot-Journal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Github Page自动更新submodule的主题</title>
+        <link>http://localhost:1313/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/</link>
+        <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/</guid>
+        <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/ -&lt;p&gt;搞好了Github page的项目之后，回家下载了项目，要跑起来的时候，总是提示如下内容：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;home&amp;quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
+WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;section&amp;quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
+WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;taxonomy&amp;quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
+WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;term&amp;quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;而且页面实际上没有渲染成功，一直都是老页面，又找不出哪里出错了。
+最终发现主题因为是用submodule安装的，在新电脑上不会自动下载，需要执行下面的命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule init
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行后就会自动下载主题了&lt;/p&gt;
+- http://localhost:1313/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>富途上下单腾讯的股价，最小加价单位是0.5元，为什么？</title>
+        <link>http://localhost:1313/Life-Reboot-Journal/trading/%E5%AF%8C%E9%80%94%E4%B8%8A%E4%B8%8B%E5%8D%95%E8%85%BE%E8%AE%AF%E7%9A%84%E8%82%A1%E4%BB%B7%E6%9C%80%E5%B0%8F%E5%8A%A0%E4%BB%B7%E5%8D%95%E4%BD%8D%E6%98%AF0.5%E5%85%83/</link>
+        <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/Life-Reboot-Journal/trading/%E5%AF%8C%E9%80%94%E4%B8%8A%E4%B8%8B%E5%8D%95%E8%85%BE%E8%AE%AF%E7%9A%84%E8%82%A1%E4%BB%B7%E6%9C%80%E5%B0%8F%E5%8A%A0%E4%BB%B7%E5%8D%95%E4%BD%8D%E6%98%AF0.5%E5%85%83/</guid>
+        <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/trading/%E5%AF%8C%E9%80%94%E4%B8%8A%E4%B8%8B%E5%8D%95%E8%85%BE%E8%AE%AF%E7%9A%84%E8%82%A1%E4%BB%B7%E6%9C%80%E5%B0%8F%E5%8A%A0%E4%BB%B7%E5%8D%95%E4%BD%8D%E6%98%AF0.5%E5%85%83/ -&lt;p&gt;下载腾讯股票数据，做分析的时候，发现最小单位是0.5元，还排查了好久是不是自己哪里把数据搞错了。问了chatGPT没有给出正确的答案，而DeepSeek给出的是最好的，如下：&lt;/p&gt;
+&lt;p&gt;您观察到的这个现象非常专业，这&lt;strong&gt;不是由富途证券决定的，而是由香港交易所的《交易规则》所规定的&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;简单来说，&lt;strong&gt;股票的最小变动单位（也叫&amp;quot;最小报价单位&amp;quot;或&amp;quot;tick size&amp;quot;）取决于该股票的价格区间&lt;/strong&gt;。价格越高，最小变动单位也越大。&lt;/p&gt;
+&lt;h3 id=&#34;-核心原因港交所的最小报价单位规则&#34;&gt;📊 核心原因：港交所的&amp;quot;最小报价单位&amp;quot;规则&lt;/h3&gt;
+&lt;p&gt;香港交易所为不同价格区间的股票设定了不同的最小变动单位，以确保市场流动性和报价效率。腾讯控股的股价长期处于数百港元的区间，因此适用较大的最小变动单位。&lt;/p&gt;
+&lt;p&gt;以下是港交所当前实行的最小报价单位规则表：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;证券价格区间（港元）&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;最小报价单位（港元）&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0.01 至 0.25&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0.001&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0.25 以上 至 0.50&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0.005&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0.50 以上 至 10.00&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0.010&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;10.00 以上 至 20.00&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0.020&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;20.00 以上 至 100.00&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0.050&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;100.00 以上 至 200.00&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0.100&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;200.00 以上 至 500.00&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;0.500&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;500.00 以上 至 1,000.00&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1.000&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1,000.00 以上 至 2,000.00&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;2.000&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;2,000.00 以上 至 5,000.00&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;5.000&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;5,000.00 以上&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;10.000&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;来源：香港交易所&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id=&#34;-腾讯控股的实际情况&#34;&gt;🎯 腾讯控股的实际情况&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;腾讯控股的股票代码是 &lt;strong&gt;00700.HK&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;其股价在很长一段时间内都处于 &lt;strong&gt;300-400港元&lt;/strong&gt; 的区间。&lt;/li&gt;
+&lt;li&gt;根据上表，当股价在 &lt;strong&gt;200港元至500港元&lt;/strong&gt; 之间时，适用的最小报价单位就是 &lt;strong&gt;0.5港元&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，您在富途或其他任何接入港交所的交易终端上为腾讯下单时，都必须遵守这个规则。您的报价必须是 &lt;strong&gt;0.5港元的整数倍&lt;/strong&gt;，例如可以报 320.0、320.5、321.0，但不能报 320.1 或 320.2。&lt;/p&gt;
+&lt;h3 id=&#34;-为什么要有这样的规定&#34;&gt;💡 为什么要有这样的规定？&lt;/h3&gt;
+&lt;p&gt;这套&amp;quot;阶梯式&amp;quot;的最小报价单位规则主要有以下几个目的：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;维持买卖价差&lt;/strong&gt;：防止价差过窄，确保做市商和流动性提供者有合理的利润空间，从而愿意为市场提供流动性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提升大额交易效率&lt;/strong&gt;：对于高价股，过小的变动单位对整体交易金额影响微乎其微，但会大大增加报价的复杂性和订单簿的深度，不利于大额订单的成交。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;减少波动&lt;/strong&gt;：在一定程度上可以减少因微小价格变动导致的频繁交易和市场噪音。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;结论：&lt;/strong&gt; 您看到的 &lt;strong&gt;0.5元&lt;/strong&gt; 的最小加价单位，是&lt;strong&gt;港交所为像腾讯这样的高价股设定的官方交易规则&lt;/strong&gt;，富途、辉立、耀才等所有券商都必须遵守。这是一个全球通行的惯例，在美股市场（不同股价对应1美分、5美分等）和其他主要交易所也都存在类似的规则。&lt;/p&gt;- http://localhost:1313/Life-Reboot-Journal/trading/%E5%AF%8C%E9%80%94%E4%B8%8A%E4%B8%8B%E5%8D%95%E8%85%BE%E8%AE%AF%E7%9A%84%E8%82%A1%E4%BB%B7%E6%9C%80%E5%B0%8F%E5%8A%A0%E4%BB%B7%E5%8D%95%E4%BD%8D%E6%98%AF0.5%E5%85%83/ - </description>
+        </item>
     
     
     
@@ -38,18 +146,6 @@
         <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/notes/obsidian%E4%B8%8Ehugo-%E7%BB%93%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95/ -&lt;p&gt;由于两者的markdown配置不一样，无法直接把obsidian编辑的markdown放到github page项目里。不过可以使用obsidian的Enhancing Export插件，把obsidian的文章导出为hugo的markdown。&lt;/p&gt;
 &lt;p&gt;把导出的markdown放到github page的content对应目录下，即可。&lt;/p&gt;
 - http://localhost:1313/Life-Reboot-Journal/notes/obsidian%E4%B8%8Ehugo-%E7%BB%93%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Trading</title>
-        <link>http://localhost:1313/Life-Reboot-Journal/trading/trading/</link>
-        <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/Life-Reboot-Journal/trading/trading/</guid>
-        <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/trading/trading/ -&lt;p&gt;自动化交易相关的内容会放在这里&lt;/p&gt;
-- http://localhost:1313/Life-Reboot-Journal/trading/trading/ - </description>
         </item>
     
     
@@ -535,21 +631,6 @@ $$
 &lt;p&gt;综上，使用每band的位数r=8，band的数量b=8，在64位pHash的使用场景中，查全率和查找速度都是相对均衡的。&lt;/p&gt;
 &lt;h5 id=&#34;总结&#34;&gt;总结&lt;/h5&gt;
 &lt;p&gt;利用图片的pHash进行相似图片的查找，计算速度较快，准确率高，在配合图片宽高数据等，可以用于图片下发服务流量对比测试，确保接口重构、优化过程中没有下发错误的照片。而使用LSH + Redis，则可以实现海量图片中相似图片的快速查找，在图片的审核上有较好的应用场景，可以快速找到图片上传服务里相似的黄反图片，且成本低廉。&lt;/p&gt;- http://localhost:1313/Life-Reboot-Journal/deep-dives/%E7%9B%B8%E4%BC%BC%E5%9B%BE%E7%89%87%E7%9A%84%E5%88%A4%E5%AE%9A%E5%8F%8A%E6%B5%B7%E9%87%8F%E5%9B%BE%E7%89%87%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%E7%9B%B8%E4%BC%BC%E5%9B%BE%E7%89%87%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>About Me</title>
-        <link>http://localhost:1313/Life-Reboot-Journal/about/about/</link>
-        <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/Life-Reboot-Journal/about/about/</guid>
-        <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/about/about/ -&lt;p&gt;I&amp;rsquo;m a Software Developer with Tencent Music Entertainment in Guangzhou, China.&lt;/p&gt;
-&lt;p&gt;Now in my middle years, I&amp;rsquo;m proactively building a foundation for the future.&lt;/p&gt;
-&lt;p&gt;This space is dedicated to my efforts in acquiring the essential skills needed to ensure a stable and secure life for my family and myself.&lt;/p&gt;
-&lt;p&gt;To connect or discuss, please email me at &lt;a href=&#34;mailto:shahuwang@qq.com&#34;&gt;shahuwang@qq.com&lt;/a&gt;.&lt;/p&gt;
-- http://localhost:1313/Life-Reboot-Journal/about/about/ - </description>
         </item>
     
     

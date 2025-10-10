@@ -6,14 +6,14 @@
     <description>Recent content in Trading on Life Reboot Journal</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/Life-Reboot-Journal/tags/trading/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Trading</title>
-      <link>http://localhost:1313/Life-Reboot-Journal/trading/trading/</link>
-      <pubDate>Thu, 09 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/Life-Reboot-Journal/trading/trading/</guid>
-      <description>&lt;p&gt;自动化交易相关的内容会放在这里&lt;/p&gt;</description>
+      <title>富途上下单腾讯的股价，最小加价单位是0.5元，为什么？</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/trading/%E5%AF%8C%E9%80%94%E4%B8%8A%E4%B8%8B%E5%8D%95%E8%85%BE%E8%AE%AF%E7%9A%84%E8%82%A1%E4%BB%B7%E6%9C%80%E5%B0%8F%E5%8A%A0%E4%BB%B7%E5%8D%95%E4%BD%8D%E6%98%AF0.5%E5%85%83/</link>
+      <pubDate>Fri, 10 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/trading/%E5%AF%8C%E9%80%94%E4%B8%8A%E4%B8%8B%E5%8D%95%E8%85%BE%E8%AE%AF%E7%9A%84%E8%82%A1%E4%BB%B7%E6%9C%80%E5%B0%8F%E5%8A%A0%E4%BB%B7%E5%8D%95%E4%BD%8D%E6%98%AF0.5%E5%85%83/</guid>
+      <description>&lt;p&gt;下载腾讯股票数据，做分析的时候，发现最小单位是0.5元，还排查了好久是不是自己哪里把数据搞错了。问了chatGPT没有给出正确的答案，而DeepSeek给出的是最好的，如下：&lt;/p&gt;&#xA;&lt;p&gt;您观察到的这个现象非常专业，这&lt;strong&gt;不是由富途证券决定的，而是由香港交易所的《交易规则》所规定的&lt;/strong&gt;。&lt;/p&gt;&#xA;&lt;p&gt;简单来说，&lt;strong&gt;股票的最小变动单位（也叫&amp;quot;最小报价单位&amp;quot;或&amp;quot;tick size&amp;quot;）取决于该股票的价格区间&lt;/strong&gt;。价格越高，最小变动单位也越大。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
