@@ -10,9 +10,9 @@
     <atom:link href="http://localhost:1313/Life-Reboot-Journal/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Github Page自动更新submodule的主题</title>
-      <link>http://localhost:1313/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/</link>
+      <link>http://localhost:1313/Life-Reboot-Journal/notes/Github-Page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/</link>
       <pubDate>Fri, 10 Oct 2025 00:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/</guid>
+      <guid>http://localhost:1313/Life-Reboot-Journal/notes/Github-Page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/</guid>
       <description>&lt;p&gt;搞好了Github page的项目之后，回家下载了项目，要跑起来的时候，总是提示如下内容：&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;home&amp;quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.&#xD;&#xA;WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;section&amp;quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.&#xD;&#xA;WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;taxonomy&amp;quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.&#xD;&#xA;WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;term&amp;quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.&#xD;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;而且页面实际上没有渲染成功，一直都是老页面，又找不出哪里出错了。&#xA;最终发现主题因为是用submodule安装的，在新电脑上不会自动下载，需要执行下面的命令：&lt;/p&gt;</description>
     </item>
     <item>

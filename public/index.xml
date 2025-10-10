@@ -6,7 +6,7 @@
     <description>Recent content on Life Reboot Journal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Oct 2025 00:55:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 11 Oct 2025 00:00:00 +0800</lastBuildDate>
     
         <atom:link href="http://localhost:1313/Life-Reboot-Journal/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,13 +14,13 @@
     
         <item>
         <title>Python绘制蜡烛图和成交额柱状图以及添加MA线</title>
-        <link>http://localhost:1313/Life-Reboot-Journal/trading/python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0ma%E7%BA%BF/</link>
-        <pubDate>Sat, 11 Oct 2025 00:55:00 +0800</pubDate>
+        <link>http://localhost:1313/Life-Reboot-Journal/trading/Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/</link>
+        <pubDate>Sat, 11 Oct 2025 00:00:00 +0800</pubDate>
         
-        <guid>http://localhost:1313/Life-Reboot-Journal/trading/python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0ma%E7%BA%BF/</guid>
-        <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/trading/python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0ma%E7%BA%BF/ -&lt;p&gt;学习程序化交易的第一步，绘制蜡烛图、MA线、成交额图，图片框架我使用的是plotly，和pandas以及jupyter的结合非常好。下图是我绘制的腾讯的股票蜡烛图、成交额图、以及在上面加上三条常规的MA线。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;../Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/b35a6389489436550327c409b6142a5103e0b1a0.png&#34; alt=&#34;蜡烛图&#34;&gt;
-&lt;img src=&#34;../Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/05ca2ca8415f25ec01c9aea9fdeaeb0e2d34ec7f.png&#34; alt=&#34;成交额图&#34;&gt;
+        <guid>http://localhost:1313/Life-Reboot-Journal/trading/Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/</guid>
+        <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/trading/Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/ -&lt;p&gt;学习程序化交易的第一步，绘制蜡烛图、MA线、成交额图，图片框架我使用的是plotly，和pandas以及jupyter的结合非常好。下图是我绘制的腾讯的股票蜡烛图、成交额图、以及在上面加上三条常规的MA线。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/d93ea5531461ae1915658b490f61857b19e6a608.png&#34; alt=&#34;蜡烛图&#34;&gt;
+&lt;img src=&#34;../Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/3cda366d7dfdf8543d12471cdf491e62797d3b7d.png&#34; alt=&#34;成交额图&#34;&gt;
 在jupyter上，点击对应的位置，可以有图示数据的展示。&lt;/p&gt;
 &lt;p&gt;示例实现代码如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 绘制蜡烛图&lt;/span&gt;
@@ -268,18 +268,18 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; __name__ &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;__main__&amp;#34;&lt;/span&gt;:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    plotTest()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- http://localhost:1313/Life-Reboot-Journal/trading/python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0ma%E7%BA%BF/ - </description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- http://localhost:1313/Life-Reboot-Journal/trading/Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/ - </description>
         </item>
     
     
     
         <item>
         <title>Github Page自动更新submodule的主题</title>
-        <link>http://localhost:1313/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/</link>
+        <link>http://localhost:1313/Life-Reboot-Journal/notes/Github-Page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/</link>
         <pubDate>Fri, 10 Oct 2025 00:00:00 +0800</pubDate>
         
-        <guid>http://localhost:1313/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/</guid>
-        <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/ -&lt;p&gt;搞好了Github page的项目之后，回家下载了项目，要跑起来的时候，总是提示如下内容：&lt;/p&gt;
+        <guid>http://localhost:1313/Life-Reboot-Journal/notes/Github-Page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/</guid>
+        <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/notes/Github-Page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/ -&lt;p&gt;搞好了Github page的项目之后，回家下载了项目，要跑起来的时候，总是提示如下内容：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;home&amp;quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
 WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;section&amp;quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
 WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;taxonomy&amp;quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
@@ -290,7 +290,7 @@ WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;term&
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule init
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行后就会自动下载主题了&lt;/p&gt;
-- http://localhost:1313/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/ - </description>
+- http://localhost:1313/Life-Reboot-Journal/notes/Github-Page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/ - </description>
         </item>
     
     

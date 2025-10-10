@@ -1,5 +1,5 @@
 ---
-date: 2025-10-11 00:55:00
+date: 2025-10-11
 draft: false
 tags:
 - Trading
@@ -10,13 +10,13 @@ title: Python绘制蜡烛图和成交额柱状图以及添加MA线
 
 学习程序化交易的第一步，绘制蜡烛图、MA线、成交额图，图片框架我使用的是plotly，和pandas以及jupyter的结合非常好。下图是我绘制的腾讯的股票蜡烛图、成交额图、以及在上面加上三条常规的MA线。
 <!--more-->
-![蜡烛图](../Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/b35a6389489436550327c409b6142a5103e0b1a0.png)
-![成交额图](../Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/05ca2ca8415f25ec01c9aea9fdeaeb0e2d34ec7f.png)
+![蜡烛图](../Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/d93ea5531461ae1915658b490f61857b19e6a608.png)
+![成交额图](../Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/3cda366d7dfdf8543d12471cdf491e62797d3b7d.png)
 在jupyter上，点击对应的位置，可以有图示数据的展示。
 
 示例实现代码如下：
 
-```python
+``` python
 # 绘制蜡烛图
 import plotly.graph_objects as go
 import plotly.io as pio
@@ -154,7 +154,7 @@ class candleStick:
        
 ```
 
-```python
+``` python
 # 绘制成交额柱状图
 import plotly.graph_objects as go
 import plotly.io as pio
@@ -235,7 +235,7 @@ class TurnoverBar:
         )
 ```
 
-```python
+``` python
 import futu
 from quantify.stock.historyKline import HistoryKLineQuery
 from quantify.plot.candleStick import candleStick

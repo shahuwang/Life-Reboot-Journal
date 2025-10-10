@@ -3,6 +3,8 @@ baseURL: https://shahuwang.github.io/Life-Reboot-Journal/
 languageCode: en-us
 title: Life Reboot Journal
 timeZone: "Asia/Shanghai"
+# 禁用将路径转换为小写的功能
+disablePathToLower: true
 # 启用目录（可选）
 markup:
   tableOfContents:
