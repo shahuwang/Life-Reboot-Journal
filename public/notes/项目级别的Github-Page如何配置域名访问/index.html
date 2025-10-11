@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><script src="/Life-Reboot-Journal/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Life-Reboot-Journal/livereload" data-no-instant defer></script>
-<title>Notes</title>
+<title>项目级别的Github Page如何配置域名访问</title>
 
 
 
@@ -37,6 +37,8 @@
 
 
 
+      <script src="/Life-Reboot-Journal/js/toc.js"></script>
+    
     <link type="text/css" rel="stylesheet" href="/Life-Reboot-Journal/vendor/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="/Life-Reboot-Journal/scss/dark-mode.min.cb53f1bee2b8900cb4f082afbf00175d6618f281cf9a2fe8619e3b52d20b5721.css" integrity="sha256-y1PxvuK4kAy08IKvvwAXXWYY8oHPmi/oYZ47UtILVyE=" media="screen">
@@ -125,6 +127,11 @@
                 
             
             
+            <div class="toc">
+
+
+</div>
+            
         </div>
     </div>
 </div>
@@ -164,220 +171,157 @@
                 <div id="streamContainer" class="stream-container">
 
     <div class="post-list-container post-list-container-shadow">
-        
-            <a class="a-block">
-                <div class="post-item-wrapper post-item-wrapper-no-hover">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title post-item-title-small year">
-                                2025
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+        <div class="post">
             
-            <a href="/Life-Reboot-Journal/notes/%E9%A1%B9%E7%9B%AE%E7%BA%A7%E5%88%AB%E7%9A%84Github-Page%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                项目级别的Github Page如何配置域名访问
-                            </div>
-                            <div class="post-item-meta">
-    2025-10-11
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            
+            
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/Life-Reboot-Journal/notes/Github-Page%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0submodule%E7%9A%84%E4%B8%BB%E9%A2%98/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Github Page自动更新submodule的主题
-                            </div>
-                            <div class="post-item-meta">
-    2025-10-10
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    项目级别的Github Page如何配置域名访问
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2025-10-11 20:50
+                        </time>
+                        
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0icon/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                添加icon
-                            </div>
-                            <div class="post-item-meta">
-    2025-10-09
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+                        
 
-                        </div>
+                        
+                        
                     </div>
                 </div>
-            </a>
+            </div>
             
-            <a href="/Life-Reboot-Journal/notes/%E6%94%AF%E6%8C%81%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                支持数学公式
-                            </div>
-                            <div class="post-item-meta">
-    2025-10-09
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>因为打算建多个网站，所以不可能使用用户级别的Github Page项目，只能使用项目级别的。我在cloudflare上购买了域名（确实便宜划算，功能支持多），想把域名绑定到这个项目级别的网站上，折腾了一番，终于搞定了。下面是操作过程。</p>
+<p>首先，在Github项目上打开 Settings-&gt;Pages, 点击 <a href="https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site">Learn more about configuring custom domains</a>. 查看帮助文档，主要在这篇 <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">Managing a custom domain for your GitHub Pages site - GitHub Docs</a> 上找到要配置的A记录和AAAA记录的IP即可。</p>
+<p>然后到cloudflare上，对域名做如下的配置：</p>
+<table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>名称</th>
+          <th>值</th>
+          <th>代理状态</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>A</td>
+          <td>@</td>
+          <td>185.199.108.153</td>
+          <td>☁️ 灰色</td>
+      </tr>
+      <tr>
+          <td>A</td>
+          <td>@</td>
+          <td>185.199.109.153</td>
+          <td>☁️ 灰色</td>
+      </tr>
+      <tr>
+          <td>A</td>
+          <td>@</td>
+          <td>185.199.110.153</td>
+          <td>☁️ 灰色</td>
+      </tr>
+      <tr>
+          <td>A</td>
+          <td>@</td>
+          <td>185.199.111.153</td>
+          <td>☁️ 灰色</td>
+      </tr>
+      <tr>
+          <td>AAAA</td>
+          <td>@</td>
+          <td>2606:50c0:8000::153</td>
+          <td>☁️ 灰色</td>
+      </tr>
+      <tr>
+          <td>AAAA</td>
+          <td>@</td>
+          <td>2606:50c0:8001::153</td>
+          <td>☁️ 灰色</td>
+      </tr>
+      <tr>
+          <td>AAAA</td>
+          <td>@</td>
+          <td>2606:50c0:8002::153</td>
+          <td>☁️ 灰色</td>
+      </tr>
+      <tr>
+          <td>AAAA</td>
+          <td>@</td>
+          <td>2606:50c0:8003::153</td>
+          <td>☁️ 灰色</td>
+      </tr>
+      <tr>
+          <td>CNAME</td>
+          <td>www</td>
+          <td>fortisor.com</td>
+          <td>☁️ 灰色</td>
+      </tr>
+  </tbody>
+</table>
+<p>要记得把代理状态给关闭掉，这个是cloudflare提供的高级功能，但是Github Page不支持这个功能。</p>
+<p>域名配置好之后，等给5分钟左右，再到项目的 Settings&mdash;&mdash;》Pages，在Custom domain处输入你的域名，譬如我的是 fortisor.com, 等待github校验域名成功后，再勾选上 Enforce HTTPS，这样子域名就算配置完成了，现在解决项目级的资源访问配置问题。</p>
+<p>首先在 hugo.yaml 的配置里改成如下配置：</p>
+<pre><code>baseURL: https://fortisor.com/
+timeZone: &quot;Asia/Shanghai&quot;
+disablePathToLower: true
+</code></pre>
+<p>因为我使用了Github Action自动部署，需要修改 .github/workflows/hugo.yaml
+主要改下run命令里的baseURL：</p>
+<pre><code>--baseURL &quot;https://fortisor.com/&quot;
+</code></pre>
+<p>这样子自动构建的时候，就会重新生成基于主域名的资源应用路径了。</p>
+<p>提交代码，很快就可以使用了。</p>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2025-10-11</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E6%8F%92%E5%85%A5/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                如何插入图片
-                            </div>
-                            <div class="post-item-meta">
-    2025-10-09
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/Life-Reboot-Journal/trading/Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/">
+			Previous<br>Python绘制蜡烛图和成交额柱状图以及添加MA线
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/Life-Reboot-Journal/notes/%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%AA%E6%98%BE%E7%A4%BA%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81%E7%9A%84%E6%96%B9%E6%B3%95/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                列表页只显示文章摘要的方法
-                            </div>
-                            <div class="post-item-meta">
-    2025-10-09
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/Life-Reboot-Journal/notes/tags%E8%B7%B3%E8%BD%AC404%E7%9A%84%E9%97%AE%E9%A2%98/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                使用Diary主题解决tag页面跳转404的问题
-                            </div>
-                            <div class="post-item-meta">
-    2025-10-09
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/Life-Reboot-Journal/notes/obsidian%E4%B8%8Ehugo-%E7%BB%93%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                obsidian与hugo结合的方法.md
-                            </div>
-                            <div class="post-item-meta">
-    2025-10-09
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/Life-Reboot-Journal/notes/github-page%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                github page自动部署
-                            </div>
-                            <div class="post-item-meta">
-    2025-10-09
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-        
+
+
+
+
+
+
+
+            </div>
+        </div>
     </div>
-
 
 
                     </div>
@@ -469,6 +413,11 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
         
 
         
+        <div class="toc">
+
+
+</div>
+        
     </div>
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
@@ -485,13 +434,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
         </a>
         
         
-        
-        
     </div>
 </div>
-
-
-
 
 <div id="single-column-footer">
 Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>

@@ -6,9 +6,25 @@
     <description>Recent content on Life Reboot Journal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Oct 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 11 Oct 2025 20:50:00 +0800</lastBuildDate>
     
         <atom:link href="http://localhost:1313/Life-Reboot-Journal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>添加icon</title>
+        <link>http://localhost:1313/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0icon/</link>
+        <pubDate>Thu, 09 Oct 2025 00:00:00 +0800</pubDate>
+        
+        <guid>http://localhost:1313/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0icon/</guid>
+        <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0icon/ -&lt;p&gt;生成一个icon图片，命名为 favicon.ico，放到 static/images/favicon.ico。&lt;/p&gt;
+&lt;p&gt;然后在 hugo.yaml 配置里加上：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;params:
+  favicon: &amp;#34;images/favicon.ico&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样子就有了icon了&lt;/p&gt;
+- http://localhost:1313/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0icon/ - </description>
+        </item>
     
     
     

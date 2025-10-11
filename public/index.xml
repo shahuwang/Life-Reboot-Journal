@@ -6,9 +6,101 @@
     <description>Recent content on Life Reboot Journal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Oct 2025 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 11 Oct 2025 20:50:00 +0800</lastBuildDate>
     
         <atom:link href="http://localhost:1313/Life-Reboot-Journal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>项目级别的Github Page如何配置域名访问</title>
+        <link>http://localhost:1313/Life-Reboot-Journal/notes/%E9%A1%B9%E7%9B%AE%E7%BA%A7%E5%88%AB%E7%9A%84Github-Page%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE/</link>
+        <pubDate>Sat, 11 Oct 2025 20:50:00 +0800</pubDate>
+        
+        <guid>http://localhost:1313/Life-Reboot-Journal/notes/%E9%A1%B9%E7%9B%AE%E7%BA%A7%E5%88%AB%E7%9A%84Github-Page%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE/</guid>
+        <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/notes/%E9%A1%B9%E7%9B%AE%E7%BA%A7%E5%88%AB%E7%9A%84Github-Page%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE/ -&lt;p&gt;因为打算建多个网站，所以不可能使用用户级别的Github Page项目，只能使用项目级别的。我在cloudflare上购买了域名（确实便宜划算，功能支持多），想把域名绑定到这个项目级别的网站上，折腾了一番，终于搞定了。下面是操作过程。&lt;/p&gt;
+&lt;p&gt;首先，在Github项目上打开 Settings-&amp;gt;Pages, 点击 &lt;a href=&#34;https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site&#34;&gt;Learn more about configuring custom domains&lt;/a&gt;. 查看帮助文档，主要在这篇 &lt;a href=&#34;https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site&#34;&gt;Managing a custom domain for your GitHub Pages site - GitHub Docs&lt;/a&gt; 上找到要配置的A记录和AAAA记录的IP即可。&lt;/p&gt;
+&lt;p&gt;然后到cloudflare上，对域名做如下的配置：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;名称&lt;/th&gt;
+          &lt;th&gt;值&lt;/th&gt;
+          &lt;th&gt;代理状态&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;A&lt;/td&gt;
+          &lt;td&gt;@&lt;/td&gt;
+          &lt;td&gt;185.199.108.153&lt;/td&gt;
+          &lt;td&gt;☁️ 灰色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;A&lt;/td&gt;
+          &lt;td&gt;@&lt;/td&gt;
+          &lt;td&gt;185.199.109.153&lt;/td&gt;
+          &lt;td&gt;☁️ 灰色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;A&lt;/td&gt;
+          &lt;td&gt;@&lt;/td&gt;
+          &lt;td&gt;185.199.110.153&lt;/td&gt;
+          &lt;td&gt;☁️ 灰色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;A&lt;/td&gt;
+          &lt;td&gt;@&lt;/td&gt;
+          &lt;td&gt;185.199.111.153&lt;/td&gt;
+          &lt;td&gt;☁️ 灰色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;AAAA&lt;/td&gt;
+          &lt;td&gt;@&lt;/td&gt;
+          &lt;td&gt;2606:50c0:8000::153&lt;/td&gt;
+          &lt;td&gt;☁️ 灰色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;AAAA&lt;/td&gt;
+          &lt;td&gt;@&lt;/td&gt;
+          &lt;td&gt;2606:50c0:8001::153&lt;/td&gt;
+          &lt;td&gt;☁️ 灰色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;AAAA&lt;/td&gt;
+          &lt;td&gt;@&lt;/td&gt;
+          &lt;td&gt;2606:50c0:8002::153&lt;/td&gt;
+          &lt;td&gt;☁️ 灰色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;AAAA&lt;/td&gt;
+          &lt;td&gt;@&lt;/td&gt;
+          &lt;td&gt;2606:50c0:8003::153&lt;/td&gt;
+          &lt;td&gt;☁️ 灰色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CNAME&lt;/td&gt;
+          &lt;td&gt;www&lt;/td&gt;
+          &lt;td&gt;fortisor.com&lt;/td&gt;
+          &lt;td&gt;☁️ 灰色&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;要记得把代理状态给关闭掉，这个是cloudflare提供的高级功能，但是Github Page不支持这个功能。&lt;/p&gt;
+&lt;p&gt;域名配置好之后，等给5分钟左右，再到项目的 Settings&amp;mdash;&amp;mdash;》Pages，在Custom domain处输入你的域名，譬如我的是 fortisor.com, 等待github校验域名成功后，再勾选上 Enforce HTTPS，这样子域名就算配置完成了，现在解决项目级的资源访问配置问题。&lt;/p&gt;
+&lt;p&gt;首先在 hugo.yaml 的配置里改成如下配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;baseURL: https://fortisor.com/
+timeZone: &amp;quot;Asia/Shanghai&amp;quot;
+disablePathToLower: true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;因为我使用了Github Action自动部署，需要修改 .github/workflows/hugo.yaml
+主要改下run命令里的baseURL：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;--baseURL &amp;quot;https://fortisor.com/&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样子自动构建的时候，就会重新生成基于主域名的资源应用路径了。&lt;/p&gt;
+&lt;p&gt;提交代码，很快就可以使用了。&lt;/p&gt;- http://localhost:1313/Life-Reboot-Journal/notes/%E9%A1%B9%E7%9B%AE%E7%BA%A7%E5%88%AB%E7%9A%84Github-Page%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE/ - </description>
+        </item>
     
     
     
@@ -469,22 +561,6 @@ WARN  found no layout file for &amp;quot;html&amp;quot; for kind &amp;quot;term&
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;增加后即可自动支持mathjax的数学公式了.&lt;/p&gt;
 - http://localhost:1313/Life-Reboot-Journal/notes/%E6%94%AF%E6%8C%81%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>添加icon</title>
-        <link>http://localhost:1313/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0icon/</link>
-        <pubDate>Thu, 09 Oct 2025 00:00:00 +0800</pubDate>
-        
-        <guid>http://localhost:1313/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0icon/</guid>
-        <description>Life Reboot Journal http://localhost:1313/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0icon/ -&lt;p&gt;生成一个icon图片，命名为 favicon.ico，放到 static/images/favicon.ico。&lt;/p&gt;
-&lt;p&gt;然后在 hugo.yaml 配置里加上：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;params:
-  favicon: &amp;#34;images/favicon.ico&amp;#34;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样子就有了icon了&lt;/p&gt;
-- http://localhost:1313/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0icon/ - </description>
         </item>
     
     
