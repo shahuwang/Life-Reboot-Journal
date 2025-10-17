@@ -6,8 +6,15 @@
     <description>Recent content in Notes on Life Reboot Journal</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Oct 2025 20:50:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 17 Oct 2025 10:09:52 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/Life-Reboot-Journal/notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hugo实现图片的轮播效果</title>
+      <link>http://localhost:1313/Life-Reboot-Journal/notes/hugo%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E7%9A%84%E8%BD%AE%E6%92%AD%E6%95%88%E6%9E%9C/</link>
+      <pubDate>Fri, 17 Oct 2025 10:09:52 +0800</pubDate>
+      <guid>http://localhost:1313/Life-Reboot-Journal/notes/hugo%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E7%9A%84%E8%BD%AE%E6%92%AD%E6%95%88%E6%9E%9C/</guid>
+      <description>&lt;p&gt;搞了很久，因为会和主题有冲突等情况，导致chatGPT和Gemini实现的方案都不可用，最终再多番尝试后终于实现了，使用方式如下：&lt;/p&gt;</description>
+    </item>
     <item>
       <title>项目级别的Github Page如何配置域名访问</title>
       <link>http://localhost:1313/Life-Reboot-Journal/notes/%E9%A1%B9%E7%9B%AE%E7%BA%A7%E5%88%AB%E7%9A%84Github-Page%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE/</link>

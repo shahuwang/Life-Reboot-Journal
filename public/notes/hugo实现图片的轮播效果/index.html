@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><script src="/Life-Reboot-Journal/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Life-Reboot-Journal/livereload" data-no-instant defer></script>
-<title>Github Page自动更新submodule的主题</title>
+<title>hugo实现图片的轮播效果</title>
 
 
 
@@ -180,12 +180,12 @@
                 
             >
                 <div class="post-title">
-                    Github Page自动更新submodule的主题
+                    hugo实现图片的轮播效果
                     
                     <div class="post-meta">
                         
                         <time itemprop="datePublished">
-                            2025-10-10 00:00
+                            2025-10-17 10:09
                         </time>
                         
 
@@ -194,10 +194,7 @@
                         
                             <i class="material-icons" style="">label</i>
                             
-                                <a href="/Life-Reboot-Journal/tags/GithubPage">GithubPage</a>
-                                &nbsp;
-                            
-                                <a href="/Life-Reboot-Journal/tags/Hugo">Hugo</a>
+                                <a href="/Life-Reboot-Journal/tags/hugo">hugo</a>
                                 &nbsp;
                             
                         
@@ -210,21 +207,52 @@
                 
                 <div class="post-body" v-pre>
                 
-                    <p>搞好了Github page的项目之后，回家下载了项目，要跑起来的时候，总是提示如下内容：</p>
-<pre><code>WARN  found no layout file for &quot;html&quot; for kind &quot;home&quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
-WARN  found no layout file for &quot;html&quot; for kind &quot;section&quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
-WARN  found no layout file for &quot;html&quot; for kind &quot;taxonomy&quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
-WARN  found no layout file for &quot;html&quot; for kind &quot;term&quot;: You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
-</code></pre>
-<p>而且页面实际上没有渲染成功，一直都是老页面，又找不出哪里出错了。
-最终发现主题因为是用submodule安装的，在新电脑上不会自动下载，需要执行下面的命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git submodule init
-</span></span><span style="display:flex;"><span>git submodule update
-</span></span></code></pre></div><p>执行后就会自动下载主题了</p>
-
+                    <p>搞了很久，因为会和主题有冲突等情况，导致chatGPT和Gemini实现的方案都不可用，最终再多番尝试后终于实现了，使用方式如下：</p>
+<h5 id="一新增layouts目录">一、新增layouts目录</h5>
+<p>新增layouts一级目录，然后再建一个子目录 layouts/shortcodes
+##### 二、新增swiper.html
+新增 layouts/shortcodes/swiper.html，代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;swiper mySwiper&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;swiper-wrapper&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    {{- range .Page.Params.swiper_images }}
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;swiper-slide&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ . }}&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    {{- end }}
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;swiper-pagination&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;swiper-button-prev&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;swiper-button-next&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;DOMContentLoaded&#39;</span>, <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">swiper</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Swiper</span>(<span style="color:#e6db74">&#34;.mySwiper&#34;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">loop</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pagination</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">el</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;.swiper-pagination&#34;</span>, <span style="color:#a6e22e">clickable</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">navigation</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">nextEl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;.swiper-button-next&#34;</span>, <span style="color:#a6e22e">prevEl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;.swiper-button-prev&#34;</span> },
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>这里的关键点，就是引入 swiper的css和js，要直接放到swiper.html里，如何放到 layouts/partial/head.html里的话，会和我的主题冲突，造成setTheme函数失败。
+#### 三、使用方法</p>
+<p>在markdown文件里，增加如下头部：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>date: &#34;2025-10-15T19:42:08+08:00&#34;
+</span></span><span style="display:flex;"><span>draft: false
+</span></span><span style="display:flex;"><span>title: test
+</span></span><span style="display:flex;"><span>swiper_images:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> &#34;0.png&#34;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> &#34;1.png&#34;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> &#34;2.png&#34;
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>这个代码块是为了展示 Shortcode 语法，它不会被渲染。
+</span></span><span style="display:flex;"><span>{{&lt; swiper &gt;}}
+</span></span></code></pre></div><p>另外吐槽下，markdown中插入代码块展示shortcode的用法，会被渲染为shortcode执行，所以需要在 &lt; 后加上 /*， 在 &gt; 前加上 */。这个问题居然是deepseek先帮我解决了</p>
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2025-10-10</p>
+		    <p style="color:#777;">Last modified on 2025-10-17</p>
                     
                 </div>
             </div>
@@ -233,14 +261,14 @@ WARN  found no layout file for &quot;html&quot; for kind &quot;term&quot;: You s
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="/Life-Reboot-Journal/trading/Python%E7%BB%98%E5%88%B6%E8%9C%A1%E7%83%9B%E5%9B%BE%E5%92%8C%E6%88%90%E4%BA%A4%E9%A2%9D%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%BB%A5%E5%8F%8A%E6%B7%BB%E5%8A%A0MA%E7%BA%BF/">
-			Next<br>Python绘制蜡烛图和成交额柱状图以及添加MA线
+                <a class="newer-posts">
+			Next<br>No newer posts.
                 </a>
                 
                 
                 
-                <a class="older-posts" href="/Life-Reboot-Journal/trading/%E5%AF%8C%E9%80%94%E4%B8%8A%E4%B8%8B%E5%8D%95%E8%85%BE%E8%AE%AF%E7%9A%84%E8%82%A1%E4%BB%B7%E6%9C%80%E5%B0%8F%E5%8A%A0%E4%BB%B7%E5%8D%95%E4%BD%8D%E6%98%AF0.5%E5%85%83/">
-			Previous<br>富途上下单腾讯的股价，最小加价单位是0.5元，为什么？
+                <a class="older-posts" href="/Life-Reboot-Journal/notes/%E9%A1%B9%E7%9B%AE%E7%BA%A7%E5%88%AB%E7%9A%84Github-Page%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE/">
+			Previous<br>项目级别的Github Page如何配置域名访问
                 </a>
                 
             </nav>

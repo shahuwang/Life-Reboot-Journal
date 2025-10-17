@@ -169,6 +169,42 @@
     <div class="post-list-container post-list-container-no-background">
         
         
+            <a href="/Life-Reboot-Journal/notes/%E6%94%AF%E6%8C%81%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                支持数学公式
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    <p>obsidian导出的markdown文章有数学公式，我目前使用的diary这个插件，没有数学公式支持，增加mathjax的支持方法如下：</p>
+<p>1、在项目的layouts/shortcodes/增加 mathjax.html，内容如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span> <span style="color:#a6e22e">async</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mathjax&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  {{ .Inner | safeHTML }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><p>增加后即可自动支持mathjax的数学公式了.</p>
+                                
+                            </div>
+                            <div class="post-item-meta">
+    2025-10-09
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
             <a href="/Life-Reboot-Journal/notes/%E6%B7%BB%E5%8A%A0icon/" class="a-block">
                 <div class="post-item-wrapper">
                     <div class="post-item post-item-no-divider">

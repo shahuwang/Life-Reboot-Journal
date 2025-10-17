@@ -2,10 +2,11 @@
 date: "2025-10-17T10:09:52+08:00"
 draft: false
 title: hugo实现图片的轮播效果
+tags: ["hugo"]
 ---
 
 搞了很久，因为会和主题有冲突等情况，导致chatGPT和Gemini实现的方案都不可用，最终再多番尝试后终于实现了，使用方式如下：
-
+<!--more-->
 ##### 一、新增layouts目录
 
 新增layouts一级目录，然后再建一个子目录 layouts/shortcodes
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 在markdown文件里，增加如下头部：
 
-``` markdownn
+```markdown
 ---
 date: "2025-10-15T19:42:08+08:00"
 draft: false
@@ -53,5 +54,8 @@ swiper_images:
   - "1.png"
   - "2.png"
 ---
-{{< swiper> }}
+这个代码块是为了展示 Shortcode 语法，它不会被渲染。
+{{</* swiper */>}}
 ```
+
+另外吐槽下，markdown中插入代码块展示shortcode的用法，会被渲染为shortcode执行，所以需要在 < 后加上 /*， 在 > 前加上 */。这个问题居然是deepseek先帮我解决了
